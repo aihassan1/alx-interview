@@ -1,39 +1,35 @@
 #!/usr/bin/python3
-"""
-Log parsing
-"""
-
+"""Write a script that reads stdin line by line and computes metrics"""
+import re
 import sys
+import signal
 
-if __name__ == '__main__':
+counter = 0
+file_size = 0
+try:
 
-    filesize, count = 0, 0
-    codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
-    stats = {k: 0 for k in codes}
+    for line in sys.stdin:
+        line_pattern = r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}\] \"GET /projects/260 HTTP/1.1\" (\d{3}) (\d+)"
+        if re.search(line_pattern, line) is None:
+            pass
 
-    def print_stats(stats: dict, file_size: int) -> None:
-        print("File size: {:d}".format(filesize))
-        for k, v in sorted(stats.items()):
-            if v:
-                print("{}: {}".format(k, v))
+        IP_pattern = r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
+        status_code_pattern = "(\d{3})"
+        file_size_pattern = " \d+$"
+        date_pattern = "\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}\]"
 
-    try:
-        for line in sys.stdin:
-            count += 1
-            data = line.split()
-            try:
-                status_code = data[-2]
-                if status_code in stats:
-                    stats[status_code] += 1
-            except BaseException:
-                pass
-            try:
-                filesize += int(data[-1])
-            except BaseException:
-                pass
-            if count % 10 == 0:
-                print_stats(stats, filesize)
-        print_stats(stats, filesize)
-    except KeyboardInterrupt:
-        print_stats(stats, filesize)
-        raise
+        IP = re.search(IP_pattern, line)
+        file_size = re.search(file_size_pattern, line)
+        status_code = re.search(status_code_pattern, line).group(1)
+
+        counter += 1
+        print(status_code)
+
+        print(status_code)
+
+except KeyboardInterrupt:
+    pass
+
+# 214.131.33.145 - [2024-05-18 02:59:50.755591] "GET /projects/260 HTTP/1.1" 400 105
+# <IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
+# f"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}\] GET /projects/260 HTTP/1.1 (\d{3}) (\d+)"

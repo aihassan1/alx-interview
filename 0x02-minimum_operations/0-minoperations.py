@@ -24,7 +24,7 @@ def minOperations(n):
 
         if n % factor == 0:
             min_ops += factor
-            n = n // factor
+            n = n / factor
         else:
             factor += 1
 
