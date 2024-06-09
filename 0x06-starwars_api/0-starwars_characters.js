@@ -8,29 +8,25 @@ if (isNaN(filmId) || !filmId) {
   process.exit(1);
 }
 
-function listOfCharacters(filmId) {
+function listOfCharacters (filmId) {
   return new Promise((resolve, reject) => {
     const apiUrl = `https://swapi-api.alx-tools.com/api/films/${filmId}`;
     request(apiUrl, (error, message, body) => {
       if (error) reject(error);
       else {
-        let data = JSON.parse(body);
-        let listOfCharacters = data.characters;
-        resolve(listOfCharacters);
+        resolve(JSON.parse(body).characters);
       }
     });
   });
 }
 
-async function characterNames(listOfCharacters) {
-  for (char of listOfCharacters) {
-    let name = await new Promise((resolve, reject) => {
-      request(char, (err, message, body) => {
+async function characterNames (listOfCharacters) {
+  for (const char of listOfCharacters) {
+    const name = await new Promise((resolve, reject) => {
+      request(char, (err, message, body) =>{
         if (err) reject(err);
         else {
-          let charData = JSON.parse(body);
-          let charName = charData.name;
-          resolve(charName);
+          resolve(JSON.parse(body).name);
         }
       });
     });
