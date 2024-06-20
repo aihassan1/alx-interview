@@ -8,14 +8,10 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    if coins == [] or coins == None:
-        return -1
-
     min_ops = [total + 1 for total in range(total + 1)]
     min_ops[0] = 0
-
-    coins.sort(reverse=True)
-
+    coins = sorted(set(coins), reverse=True)
+    
     for i in range(1, total + 1):
         for coin in coins:
             if i - coin >= 0:
