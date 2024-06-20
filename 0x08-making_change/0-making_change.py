@@ -11,12 +11,6 @@ def makeChange(coins, total):
     if coins == [] or coins == None:
         return -1
 
-    try:
-        coins.index(total)
-        return 1
-    except ValueError:
-        pass
-
     min_ops = [total + 1 for total in range(total + 1)]
     min_ops[0] = 0
 
