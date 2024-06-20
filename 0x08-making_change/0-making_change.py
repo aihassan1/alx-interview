@@ -28,8 +28,3 @@ def makeChange(coins, total):
                 min_ops[i] = min(min_ops[i], min_ops[i - coin] + 1)
 
     return min_ops[total] if min_ops[total] != total + 1 else -1
-
-
-print(makeChange([1, 2, 25], 37))
-
-print(makeChange([1256, 54, 48, 16, 102], 1453))
