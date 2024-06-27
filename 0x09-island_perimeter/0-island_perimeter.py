@@ -33,13 +33,3 @@ def island_perimeter(grid):
                 land_param = count_water_around_land(grid, x, y, land_param)
 
     return len(land_param)
-
-
-grid = [
-    [0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-]
-print(island_perimeter(grid))
