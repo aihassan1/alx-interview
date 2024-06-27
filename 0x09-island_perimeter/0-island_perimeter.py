@@ -7,6 +7,16 @@ def count_water_around_land(grid, x, y, land_param):
     rows = len(grid)
     cols = len(grid[0])
 
+    # handel corners
+    if x - 1 < 0:
+        land_param.append(("top land"))
+    if x + 1 > rows:
+        land_param.append(("bottom land"))
+    if y + 1 > cols:
+        land_param.append(("right land"))
+    if y - 1 < 0:
+        land_param.append(("left land"))
+
     if x + 1 < rows and grid[x + 1][y] == 0:
         land_param.append((x + 1, y))
 
