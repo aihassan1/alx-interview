@@ -42,4 +42,4 @@ def island_perimeter(grid):
             if grid[x][y] == 1:
                 land_param = count_water_around_land(grid, x, y, land_param)
 
-    return len(land_param)
+    return (land_param)
