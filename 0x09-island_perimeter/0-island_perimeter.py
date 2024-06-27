@@ -2,7 +2,7 @@
 """Island Perimeter"""
 
 
-def check_four_dir(grid, x, y, land_param):
+def count_water_around_land(grid, x, y, land_param):
     """check the land in the 4 directions"""
     rows = len(grid)
     cols = len(grid[0])
@@ -30,6 +30,16 @@ def island_perimeter(grid):
     for x in range(len(grid)):
         for y in range(len(grid[x])):
             if grid[x][y] == 1:
-                land_param = check_four_dir(grid, x, y, land_param)
+                land_param = count_water_around_land(grid, x, y, land_param)
 
     return len(land_param)
+
+
+grid = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+]
+print(island_perimeter(grid))
