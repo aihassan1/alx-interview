@@ -10,9 +10,9 @@ def count_water_around_land(grid, x, y, land_param):
     # handel corners
     if x - 1 < 0:
         land_param.append(("top land"))
-    if x + 1 > rows:
+    if x + 1 == rows:
         land_param.append(("bottom land"))
-    if y + 1 > cols:
+    if y + 1 == cols:
         land_param.append(("right land"))
     if y - 1 < 0:
         land_param.append(("left land"))
@@ -42,4 +42,4 @@ def island_perimeter(grid):
             if grid[x][y] == 1:
                 land_param = count_water_around_land(grid, x, y, land_param)
 
-    return (land_param)
+    return len(land_param)
