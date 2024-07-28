@@ -5,21 +5,29 @@
 def makeChange(coins, total):
     """determine the fewest number of coins needed to meet
     a given amount total"""
+
     if total <= 0:
         return 0
 
-    min_ops = [total + 1 for total in range(total + 1)]
-    min_ops[0] = 0
-    coins = sorted(set(coins), reverse=True)
+    if total < 0 or type(total) is not int:
+        return -1
 
-    for i in range(1, total + 1):
-        for coin in coins:
-            if coin > i:
-                continue
-            if i - coin == 0:
-                min_ops[i] = 1
-                break
-            if i - coin >= 0:
-                min_ops[i] = min(min_ops[i], min_ops[i - coin] + 1)
+    sorted_list = sorted(coins, reverse=True)
+    denominations = []
+    (sorted_list)
+    while total > 0 and sorted_list:
+        if (total - sorted_list[0]) >= 0:
+            denominations.append(sorted_list[0])
+            # print(total)
+            # print(denominations)
 
-    return min_ops[total] if min_ops[total] != total + 1 else -1
+            total = total - sorted_list[0]
+
+        else:
+            sorted_list = sorted_list[1:]
+
+    if total != 0:
+        # print("no denomination found")
+        return -1
+
+    return len(denominations)
