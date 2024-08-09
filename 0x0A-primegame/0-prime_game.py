@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+"""define the iswinner function"""
+
+
 def get_prime_numbs(n):
     """Function that gets the prime numbers list up to n."""
+    if n < 2:
+        return []
 
     nums_list = [True] * (n + 1)
     nums_list[0] = nums_list[1] = False
