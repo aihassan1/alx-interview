@@ -1,6 +1,4 @@
-# create function the gets the prime numbers list up to n
-
-
+#!/usr/bin/python3
 def get_prime_numbs(n):
     "function the gets the prime numbers list up to n"
 
