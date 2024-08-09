@@ -22,7 +22,7 @@ def isWinner(x, nums):
 
     for number in nums:
         list_of_prime_nums = get_prime_numbs(number)
-        if len(list_of_prime_nums) % 2 == 0:
+        if (len(list_of_prime_nums) - 1) % 2 == 0:
             Ben_Score += 1
         else:
             Maria_score += 1
