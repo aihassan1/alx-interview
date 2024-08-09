@@ -21,11 +21,13 @@ def isWinner(x, nums):
     Ben_Score = 0
 
     for number in nums:
-        list_of_prime_nums = get_prime_numbs(number)
-        if (len(list_of_prime_nums) - 1) % 2 == 0:
-            Ben_Score += 1
-        else:
+        moves = (
+            len(get_prime_numbs(number)) - 1
+        )  # -1 because 1 is not considered in the game
+        if moves % 2 == 1:  # Odd number of moves means Maria wins
             Maria_score += 1
+        else:  # Even number of moves (including 0) means Ben wins
+            Ben_Score += 1
 
     if Maria_score > Ben_Score:
         return "Maria"
