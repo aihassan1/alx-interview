@@ -26,10 +26,10 @@ def isWinner(x, nums):
     for number in nums:
         list_of_prime_nums = get_prime_numbs(number)
         moves = len(list_of_prime_nums)
-        if moves % 2 == 1:
-            Maria_score += 1
-        else:
+        if moves % 2 == 0:
             Ben_Score += 1
+        else:
+            Maria_score += 1
 
     if Maria_score > Ben_Score:
         return "Maria"
