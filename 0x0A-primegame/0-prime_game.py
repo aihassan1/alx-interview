@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 def get_prime_numbs(n):
-    "function the gets the prime numbers list up to n"
+    """function the gets the prime numbers list up to n"""
+    if n < 2:
+        return []
 
     nums_list = [True] * (n + 1)
     nums_list[0] = nums_list[1] = False
@@ -17,17 +19,17 @@ def get_prime_numbs(n):
 
 def isWinner(x, nums):
     """define who is winner in a game"""
+
     Maria_score = 0
     Ben_Score = 0
 
     for number in nums:
-        moves = (
-            len(get_prime_numbs(number)) - 1
-        )  # -1 because 1 is not considered in the game
-        if moves % 2 == 1:  # Odd number of moves means Maria wins
-            Maria_score += 1
-        else:  # Even number of moves (including 0) means Ben wins
+        list_of_prime_nums = get_prime_numbs(number)
+        moves = len(list_of_prime_nums)
+        if moves % 2 == 0:
             Ben_Score += 1
+        else:
+            Maria_score += 1
 
     if Maria_score > Ben_Score:
         return "Maria"
@@ -35,3 +37,6 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
+
+
+print("Winner: {}".format(isWinner(5, [2, 5, 1, 4, 3])))
