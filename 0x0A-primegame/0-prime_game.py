@@ -22,7 +22,7 @@ def get_prime_numbs(n):
 
 def isWinner(x, nums):
     """Define who is winner in a game."""
-    if x is None or nums is None or x == 0 or nums == []:
+    if x is None or x <= 0 or nums is None or x == 0 or nums == []:
         return None
 
     maria_score = 0
